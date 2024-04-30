@@ -53,8 +53,22 @@ export const runLint = (markdown: string, allRuleConfigs: LintMdRuleWithOptions[
   // 递归地遍历 ast
   traverser.traverse(ast, null);
 
+  const enteringNodeQueue = nodeQueue.filter(item => item.isEntering);
+
+  // 为行内代码添加标记，以便后续的规则判断
+  for (let i = 1; i < enteringNodeQueue.length - 1; i++) {
+    // 如果当前节点是行内代码，前一个节点是文本或段落，后一个节点是文本
+    if (
+      enteringNodeQueue[i].node.type === 'inlineCode'
+      && (enteringNodeQueue[i - 1].node.type === 'text' || enteringNodeQueue[i - 1].node.type === 'paragraph')
+      && enteringNodeQueue[i + 1].node.type === 'text'
+    ) {
+      enteringNodeQueue[i].node.spaceAroundFlag = true;
+    }
+  }
+
   // 遍历节点队列，执行对应的选择器
-  for (const nodeQueueItem of nodeQueue) {
+  for (const nodeQueueItem of enteringNodeQueue) {
     const { node, isEntering } = nodeQueueItem;
 
     try {
