@@ -2,7 +2,7 @@ import type { MarkdownCodeNode } from '@lint-md/parser';
 import type { LintMdRule, LintMdRuleContext } from '../types';
 
 // 定义标点符号的正则表达式
-const punctuationRegex = /[.,;:!?。，；：！？\n]/;
+const punctuationRegex = /[.,;:!?。，；：！？、\n]/;
 
 const spaceAroundInlineCode: LintMdRule = {
   meta: {
@@ -49,6 +49,9 @@ const spaceAroundInlineCode: LintMdRule = {
               flag++;
             }
           }
+          else {
+            flag++;
+          }
 
           // 最后一个字符是标点符号的情况下，不需要添加空格
           if (!result.endsWith('` ')) {
@@ -61,6 +64,9 @@ const spaceAroundInlineCode: LintMdRule = {
             else {
               flag++;
             }
+          }
+          else {
+            flag++;
           }
 
           // 如果第一个字符和最后一个字符都是标点符号，那么不需要添加空格
