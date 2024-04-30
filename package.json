@@ -1,6 +1,6 @@
 {
-  "name": "@lint-md/core",
-  "version": "2.0.0",
+  "name": "@naomi233/lint-md-core",
+  "version": "2.1.4",
   "description": "Core of lint-md which used to lint your markdown file for Chinese.",
   "main": "lib/index.js",
   "module": "esm/index.js",
@@ -14,7 +14,7 @@
     "lib:esm": "tsc -p tsconfig.json --target ESNext --module ESNext --outDir esm",
     "build": "rm -rf lib esm && run-p lib:*",
     "clean": "rimraf lib esm",
-    "release": "npm publish"
+    "release": "npm publish --access public"
   },
   "files": [
     "esm",
@@ -46,6 +46,7 @@
     "npm-run-all": "^4.1.5",
     "rimraf": "^3.0.2",
     "ts-jest": "^29.0.3",
+    "ts-node": "^10.9.2",
     "typescript": "^4.8.4"
   },
   "jest": {
@@ -59,17 +60,17 @@
       "!**/vendor/**"
     ]
   },
-  "author": "hustcc",
+  "author": "Naomi233",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/lint-md/lint-md"
+    "url": "https://github.com/Henvy-Mango/lint-md"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/lint-md.git"
+    "url": "git+https://github.com/Henvy-Mango/lint-md.git"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org"
   },
-  "homepage": "https://github.com/lint-md#readme"
+  "homepage": "https://github.com/Henvy-Mango/lint-md#readme"
 }
